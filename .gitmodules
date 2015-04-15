@@ -1,0 +1,6 @@
+[submodule "app/static/scripts/perseus"]
+	path = app/static/scripts/perseus
+	url = https://github.com/Khan/perseus.git
+[submodule "app/static/scripts/MathJax"]
+	path = app/static/scripts/MathJax
+	url = https://github.com/mathjax/MathJax.git

@@ -1,0 +1,12 @@
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+
+# IntelliJ
+.idea
+
+app/static/scripts/ng-perseus-build.js
+lkhan.appcache
+
