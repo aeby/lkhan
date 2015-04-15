@@ -21,7 +21,7 @@ Run `grunt` for building and `grunt serve` for preview.
 
 Create cache manifest file for localkhan:
 
-   grunt manifest
+    grunt manifest
 
 ## Testing
 
