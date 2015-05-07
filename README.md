@@ -19,7 +19,7 @@ Concat and optimize perseus dependencies (from project root)
 
 Run `grunt` for building and `grunt serve` for preview.
 
-Create cache manifest file for localkhan:
+Create cache manifest file for [localkhan](https://github.com/aeby/localkhan):
 
     grunt manifest
 
