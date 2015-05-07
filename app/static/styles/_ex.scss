@@ -1,0 +1,115 @@
+.ex-content {
+  margin-left: 51px;
+}
+
+.ex-nav {
+  position: absolute;
+  width: 43px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #eee;
+  overflow: hidden;
+  outline: none;
+
+  -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+
+  &.show {
+    width: 300px;
+  }
+}
+
+.progress-container {
+  display: block;
+  position: relative;
+
+  .progress-item {
+    border-top: 1px solid #ddd;
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 22px;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+
+    &:first-child {
+      border-top: 0;
+
+      .pipe {
+        bottom: -1px;
+        height: 50%;
+        top: auto;
+      }
+    }
+
+    a, a:visited {
+      color: #444;
+      display: block;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+
+  .progress-title {
+    display: table-cell;
+    padding-left: 5px;
+    line-height: 20px;
+  }
+}
+
+.subway-icon {
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 100%;
+  top: 0;
+
+  .pipe {
+    box-sizing: content-box;
+    background-color: #cdcdcd;
+    height: 100%;
+    padding-top: 2px;
+    position: absolute;
+    top: -1px;
+    right: auto;
+    bottom: auto;
+    left: 18px;
+    width: 4px;
+    z-index: 10;
+  }
+
+  & + .progress-title {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 40px;
+    padding: 15px;
+    padding-left: 50px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .status {
+    height: 25px;
+    width: 25px;
+    background-size: 25px 75px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 8px;
+    margin-top: -12px;
+    z-index: 20;
+
+    &.tyvideo {
+      background-image: url(/static/images/video.svg);
+    }
+
+    &.tyexercise {
+      background-image: url(/static/images/exercise.svg);
+    }
+
+  }
+}
+

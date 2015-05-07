@@ -28,7 +28,7 @@
 </head>
 <body>
 
-  <div class="container" ui-view></div>
+  <div ui-view></div>
 
   <script type="text/javascript">
     window.MathJax = {
@@ -64,7 +64,12 @@
 
   <!-- build:js({.tmp,app}) static/scripts/scripts.js -->
   <script src="static/scripts/app.js"></script>
-  <script src="static/scripts/controllers/classroom.js"></script>
+  <script src="static/scripts/classroom/classroom.ctrl.js"></script>
+  <script src="static/scripts/tutorial/tutorial.ctrl.js"></script>
+
+  <script src="static/scripts/classroom/content.srv.js"></script>
+  <script src="static/scripts/tutorial/tutorial.srv.js"></script>
+
   <script src="static/scripts/directives/perseus.js"></script>
   <!-- endbuild -->
 

@@ -17,19 +17,19 @@ angular
       .state('khan', {
         template: '<ui-view/>',
         abstract: true,
-        /*resolve: {
-         topicStructure: function (TopicService) {
-         return TopicService.loadTopicStructure();
-         }
-         }*/
+        resolve: {
+          content: function (ContentService) {
+            return ContentService.loadContent();
+          }
+        }
       })
       .state('khan.classroom', {
         url: '/',
         controller: 'ClassRoomCtrl',
-        templateUrl: 'static/views/main.html'
+        templateUrl: 'static/views/classroom.html'
       })
       .state('khan.tutorials', {
-        url: '/{topicId}/tutorial/{tutorialId}',
+        url: '/{topicSlug}/tutorial/{tutorialSlug}',
         controller: 'TutorialCtrl',
         templateUrl: 'static/views/tutorials.html'
       })
