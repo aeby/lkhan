@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:MainCtrl
+ * @name lkhan.controller:ClassRoomCtrl
  * @description
- * # MainCtrl
- * Controller of the clientApp
+ * # ClassRoomCtrl
+ * Controller of the lkhan
  */
 angular.module('lkhan')
-  .controller('ClassRoomCtrl', function ($scope, $log, ContentService, content) {
+  .controller('ClassRoomCtrl', function ($scope, $log, $translate, ContentService) {
     $scope.topics = ContentService.getTopicStructure();
   });

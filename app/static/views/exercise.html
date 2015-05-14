@@ -1,0 +1,21 @@
+<perseus ng-if="exercise" question="exercise"></perseus>
+
+<div ng-show="answerState">
+  {{answerState}}
+</div>
+<div class="lk-assessment-bmenu clearfix">
+  <ul class="list-inline pull-right">
+    <li>
+      <!--Consigue 5 aciertos consecutivos-->
+    </li>
+    <li>
+      <button ng-click="showHint()" class="btn btn-info btn-lg">{{ 'SHOW_HINT' | translate }}</button>
+    </li>
+    <li>
+      <button ng-click="checkAnswer()" class="btn btn-info btn-lg">{{ answerBtn | translate }}</button>
+    </li>
+    <li>
+      <button ng-show="ssa" class="btn btn-info btn-lg">{{ 'NEXT_LESSON' | translate }}</button>
+    </li>
+  </ul>
+</div>

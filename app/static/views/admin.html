@@ -1,0 +1,43 @@
+<nav class="cr-nav">
+  <a class="pull-left logo" ui-sref="khan.classroom"><span class="icon-leaf"></span></a>
+</nav>
+
+<div class="cnt-md">
+
+  <h1>{{currentStudent.name}} Stats</h1>
+
+  Stats Stats Stats
+
+  <h3>Estudiantes</h3>
+  <ul class="list-unstyled">
+    <li class="user-list" ng-repeat="stud in students">
+      <button ng-click="switchStudent(stud.id)" type="button" class="btn btn-success">
+        <span class="icon-person" aria-hidden="true"></span> {{ stud.name }}
+      </button>
+      <button ng-click="removeStudent(stud.id)" type="button" class="btn btn-danger">
+        <span class="icon-delete" aria-hidden="true"></span></button>
+    </li>
+  </ul>
+  <form class="form-inline" ng-submit="addStudent()">
+    <div class="form-group">
+      <input class="form-control" type="text" ng-model="newStudent.name" size="30"
+             placeholder="nombre">
+    </div>
+    <button type="submit" class="btn btn-primary">agregar</button>
+  </form>
+
+  <div ng-show="userError" class="alert alert-danger" role="alert">
+    {{userError}}
+  </div>
+
+  <h3>Settings</h3>
+
+  <h4>Display</h4>
+  <button class="btn btn-default" ng-click="toggleFullScreen()">Go Fullscreen</button>
+  <h4>Language</h4>
+  <ul class="list-inline">
+    <li ng-repeat="lang in languages">
+      <button class="btn btn-default" ng-click="changeLanguage(lang)">{{lang | uppercase}}</button>
+    </li>
+  </ul>
+</div>

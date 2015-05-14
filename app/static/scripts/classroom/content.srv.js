@@ -13,6 +13,15 @@ angular.module('lkhan')
         deferredExercises = $q.defer(),
         deferredVideos = $q.defer();
 
+      // already loaded
+      if (topicIndex && exercises && videos) {
+        return {
+          topics: topics,
+          exercises: exercises,
+          videos: videos
+        }
+      }
+
       $http.get('static/khan/topics.json')
         .success(function (data) {
           topics = data.topics;
@@ -45,7 +54,11 @@ angular.module('lkhan')
         });
 
 
-      return $q.all({video: deferredTopics.promise, exercises: deferredExercises.promise, videos: deferredVideos.promise}).then(function (data) {
+      return $q.all({
+        topics: deferredTopics.promise,
+        exercises: deferredExercises.promise,
+        videos: deferredVideos.promise
+      }).then(function (data) {
         return data;
       });
     };
@@ -64,6 +77,10 @@ angular.module('lkhan')
 
     this.getVideo = function (videoId) {
       return videos[videoId];
+    };
+
+    this.getExercises = function (topicSlug) {
+      return exercises[topicSlug];
     };
 
   });

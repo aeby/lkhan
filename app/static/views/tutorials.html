@@ -1,21 +1,2 @@
-<div class="ex-content">
-  <video width="95%" ng-show="video" ng-src="{{video}}" controls>
-    Your browser does not support the <code>video</code> element.
-  </video>
-</div>
-
-<div class="ex-nav" ng-class="{show: menu}" ng-click="menu = !menu;">
-  <ul class="progress-container list-unstyled">
-    <li class="progress-item" ng-repeat="tutorialContent in tutorialContents">
-      <a ng-click="setTC(tutorialContent.id); $event.stopPropagation();">
-        <div class="subway-icon">
-          <div class="pipe"></div>
-          <div class="pipe completed"></div>
-          <div class="status" ng-class="{tyvideo: tutorialContent.type=='v', tyexercise:tutorialContent.type=='e'}">
-          </div>
-        </div>
-        <span class="progress-title">{{tutorialContent.title}}</span>
-      </a>
-    </li>
-  </ul>
-</div>
+<div class="lk-assessment" ui-view></div>
+<lk-menu menu-items="menuItems"></lk-menu>

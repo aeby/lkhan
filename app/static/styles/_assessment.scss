@@ -1,0 +1,29 @@
+.lk-assessment {
+  margin-left: 43px;
+  padding: 15px;
+
+  .lk-video{
+    width: 100%;
+  }
+}
+
+.lk-assessment-bmenu{
+  position: fixed;
+  left: 43px + 15px;
+  right: 15px;
+  bottom: 0;
+  z-index: 50;
+  background-color: #fff;
+
+  ul{
+    margin: 0;
+  }
+
+  li{
+    padding: 10px;
+
+    &:last-child{
+      padding-right: 0;
+    }
+  }
+}

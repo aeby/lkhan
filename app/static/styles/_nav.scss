@@ -1,0 +1,24 @@
+.cr-nav {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
+  @include clearfix;
+
+  & > span, a {
+    display: inline-block;
+    padding: 16px 2%;
+    line-height: 30px;
+    font-size: $font-size-large;
+    text-decoration: none;
+
+    &.menu {
+      color: $gray-dark;
+      font-size: 30px;
+    }
+
+    &.logo {
+      color: #9eb63a;
+      font-size: 30px;
+    }
+  }
+}

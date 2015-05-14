@@ -1,14 +1,19 @@
-<div>
-  <ul class="list-unstyled">
-    <li ng-repeat="topic in topics">
-      <h1>{{topic.title}}</h1>
+<nav class="cr-nav">
+  <a class="pull-left logo" ui-sref="khan.classroom"><span class="icon-leaf"></span></a>
+  <span class="pull-left">{{currentStudent.name}}</span>
+  <a class="pull-right menu" ui-sref="admin"><span class="icon-settings"></span></a>
+</nav>
 
-      <div class="list-group">
-        <a ui-sref="khan.tutorials({topicSlug: topic.slug,  tutorialSlug: tutorial.slug })" class="list-group-item"
-           ng-repeat="tutorial in topic.tutorials">
-          {{tutorial.title}}
-        </a>
-      </div>
-    </li>
-  </ul>
-</div>
+<ul class="list-unstyled">
+  <li ng-repeat="topic in topics">
+    <h1>{{topic.title}}</h1>
+
+    <div class="list-group">
+      <a ui-sref="khan.tutorials({topicSlug: topic.slug,  tutorialSlug: tutorial.slug })" class="list-group-item"
+         ng-repeat="tutorial in topic.tutorials">
+        {{tutorial.title}}
+      </a>
+    </div>
+  </li>
+</ul>
+
