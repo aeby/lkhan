@@ -27,7 +27,9 @@ module.exports = function (grunt) {
   var mathjaxFiles = [
     'MathJax/MathJax.js',
     'MathJax/config/TeX-AMS_HTML-full.js',
-    'MathJax/jax/output/HTML-CSS/fonts/TeX/fontdata.js'
+    'MathJax/jax/output/HTML-CSS/fonts/TeX/fontdata.js',
+    'MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Main.js',
+    'MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Latin1Supplement.js',
   ];
 
   // Define the configuration for all the tasks

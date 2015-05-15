@@ -4,9 +4,20 @@
   <a class="pull-right menu" ui-sref="admin"><span class="icon-settings"></span></a>
 </nav>
 
-<ul class="list-unstyled">
-  <li ng-repeat="topic in topics">
-    <h1>{{topic.title}}</h1>
+<ul class="list-unstyled toc">
+  <li ng-repeat="topic in toc">
+    <h2>{{topic.title}}</h2>
+    <ul class="list-unstyled">
+      <li class="row" ng-repeat="row in topic.rows">
+        <a ui-sref="khan.tutorials({topicSlug: topic.slug,  tutorialSlug: tutorial.slug })"
+           ng-class="row-{{row.length}}" ng-repeat="tutorial in row">
+          <div class="circle">
+            <div class="logo"></div>
+          </div>
+          {{tutorial.title}}
+        </a>
+      </li>
+    </ul>
 
     <div class="list-group">
       <a ui-sref="khan.tutorials({topicSlug: topic.slug,  tutorialSlug: tutorial.slug })" class="list-group-item"

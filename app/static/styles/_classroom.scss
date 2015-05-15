@@ -1,4 +1,66 @@
+$gray-disc: lighten($gray-base, 82.5%) !default;
+$gray-disc-hover: lighten($gray-base, 77.5%) !default;
+
 .topic {
   width: 10%;
   display: inline-block;
+}
+
+.toc {
+  text-align: center;
+
+  h2 {
+    margin-bottom: 24px;
+  }
+
+  li.row {
+
+    margin-bottom: 2em;
+
+    a {
+      width: 18%;
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 2%;
+      text-decoration: none;
+      color: $gray-dark;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.row-1 {
+        width: 60%;
+      }
+
+      &:hover {
+         color: $gray-darker;
+        .circle {
+          background-color: $gray-disc-hover;
+        }
+      }
+
+      .circle {
+        margin: 0 auto 1em;
+        width: 9vw;
+        height: 9vw;
+        border-radius: 50%;
+        background-color: $gray-disc;
+        color: #fff;
+
+        .logo {
+          background: transparent url(/static/images/leaf.svg) no-repeat 50% 50%;
+          background-size: 42%;
+          height: 100%;
+          width: 100%;
+          margin: 0 auto;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
 }

@@ -50,6 +50,7 @@
   <script src="static/scripts/perseus/ke/local-only/jed.js"></script>
   <script src="static/scripts/perseus/ke/local-only/i18n.js"></script>
   <script src="static/scripts/perseus/ke/local-only/jquery.qtip.js"></script>
+  <script src="static/scripts/exercises-stub.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -92,6 +93,9 @@
   <script>
     var KhanUtil = {
       debugLog: function () {
+      },
+      localeToFixed: function(num, precision) {
+          return num.toFixed(precision);
       }
     };
     var Khan = {

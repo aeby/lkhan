@@ -15,6 +15,7 @@ angular.module('lkhan')
         var itemMountNode = null, itemRenderer = null;
 
         scope.$watch('question', function () {
+          console.log(scope.question);
           // Cleanup old container
           if (itemMountNode) {
             React.unmountComponentAtNode(itemMountNode);
@@ -26,8 +27,7 @@ angular.module('lkhan')
             problemNum: Math.floor(Math.random() * 50) + 1,
             initialHintsVisible: 0,
             enabledFeatures: {
-              highlight: true,
-              toolTipFormats: true
+              useMathQuill: true
             }
           }, null), itemMountNode);
 
