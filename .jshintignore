@@ -1,3 +1,4 @@
 app/static/scripts/MathJax/*
 app/static/scripts/perseus/*
-app/static/scripts/ng-perseus-build.js
+app/static/scripts/pe/ng-perseus-build.js
+app/static/scripts/pe/react-with-addons-0.13.3.js

@@ -53,7 +53,7 @@ angular
 
     $translateProvider.translations('en', {
       'NEXT_LESSON': 'Go to next lesson',
-      'SHOW_HINT': "I'd like a hint",
+      'SHOW_HINT': 'I\'d like a hint',
       'CHECK_ANSWER': 'Check answer',
       'ANSWER_INCORRECT': 'Incorrect answer, please try again.',
       'ANSWER_CORRECT': 'Correct! Next question...',

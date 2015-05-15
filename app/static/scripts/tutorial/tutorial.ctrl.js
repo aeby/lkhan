@@ -21,7 +21,7 @@ angular.module('lkhan')
         href: $state.href(getTCStateName(tc.type), {tutorialContentId: tc.id}),
         label: tc.title,
         type: tc.type
-      })
+      });
     });
 
     $scope.menuItems = menuItems;
@@ -55,7 +55,7 @@ angular.module('lkhan')
           $scope.exercise = exercises[index+1];
         }
         $scope.answerState = null;
-        return
+        return;
       }
       var score = PersusService.scoreInput();
       if (score.correct) {
@@ -70,7 +70,7 @@ angular.module('lkhan')
   .controller('VideoCtrl', function ($scope, $log, $stateParams, ContentService) {
     $scope.video = ContentService.getVideo($stateParams.tutorialContentId);
     $scope.showNext = false;
-    $scope.videoDone = function (ev) {
+    $scope.videoDone = function () {
       $scope.showNext = true;
-    }
+    };
   });

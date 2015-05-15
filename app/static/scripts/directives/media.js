@@ -21,7 +21,7 @@ angular.forEach(
   'abort canplay canplaythrough durationchange emptied ended error interruptbegin interruptend loadeddata loadedmetadata loadstart onencrypted pause play playing progress ratechange seeked seeking stalled suspend timeupdate volumechange waiting'.split(' '),
   function (eventName) {
     var directiveName = directiveNormalize('lk-' + eventName);
-    lkMediaDirectives[directiveName] = ['$parse', '$rootScope', function ($parse, $rootScope) {
+    lkMediaDirectives[directiveName] = ['$parse', '$rootScope', function ($parse) {
       return {
         restrict: 'A',
         compile: function ($element, attr) {

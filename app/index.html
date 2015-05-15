@@ -3,7 +3,7 @@
 <head>
   <base href="/">
   <meta charset="utf-8">
-  <title></title>
+  <title>lkhan</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
 
@@ -32,25 +32,24 @@
   <script type="text/javascript">
     window.MathJax = {
       config: "TeX-AMS_HTML-full.js"
-
     };
   </script>
   <!-- mathjax can't be concatenated as long as the base path can't be set-->
   <script src="static/scripts/MathJax/MathJax.js"></script>
-  <!-- concatenating react-with-addons.js produces invalid syntax-->
-  <!-- <script src="static/scripts/perseus/lib/react-with-addons.js"></script>-->
-  <script src="static/scripts/ra.js"></script>
 
   <!-- build:js({.,app}) static/scripts/vendor.js -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
+
+  <script src="static/scripts/pe/react-with-addons-0.13.3.js"></script>
   <script src="static/scripts/perseus/lib/katex/katex.js"></script>
   <script src="static/scripts/perseus/lib/mathquill/mathquill-basic.js"></script>
   <script src="static/scripts/perseus/lib/kas.js"></script>
   <script src="static/scripts/perseus/ke/local-only/jed.js"></script>
   <script src="static/scripts/perseus/ke/local-only/i18n.js"></script>
   <script src="static/scripts/perseus/ke/local-only/jquery.qtip.js"></script>
-  <script src="static/scripts/exercises-stub.js"></script>
+  <script src="static/scripts/pe/exercises-stub.js"></script>
+
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -66,6 +65,7 @@
   <script src="bower_components/js-data/dist/js-data.js"></script>
   <script src="bower_components/js-data-localforage/dist/js-data-localforage.js"></script>
   <script src="bower_components/js-data-angular/dist/js-data-angular.js"></script>
+
   <script src="static/scripts/perseus/ke/local-only/require.js"></script>
   <!-- endbuild -->
 
@@ -82,37 +82,17 @@
   <script src="static/scripts/admin/admin.ctrl.js"></script>
   <script src="static/scripts/admin/student.mdl.js"></script>
 
-
   <script src="static/scripts/directives/perseus.js"></script>
   <script src="static/scripts/directives/menu.js"></script>
   <script src="static/scripts/directives/media.js"></script>
-
-
   <!-- endbuild -->
 
   <script>
-    var KhanUtil = {
-      debugLog: function () {
-      },
-      localeToFixed: function(num, precision) {
-          return num.toFixed(precision);
-      }
-    };
-    var Khan = {
-      Util: KhanUtil,
-      error: function () {
-      },
-      query: {debug: ""},
-      imageBase: "/static/images/ke",
-      scratchpad: {
-        disable: function () {
-        },
-        enable: function () {
-        }
-      }
-    };
+    var KhanUtil = {debugLog: function () {}, localeToFixed: function(num, precision) {return num.toFixed(precision);}};
+    var Khan = {Util: KhanUtil, error: function () {}, query: {debug: ""}, imageBase: "/static/images", scratchpad: {disable: function () {}, enable: function () {}}};
     React.initializeTouchEvents(true);
   </script>
-  <script src="static/scripts/ng-perseus-build.js"></script>
+
+  <script src="static/scripts/pe/ng-perseus-build.js"></script>
 </body>
 </html>

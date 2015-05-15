@@ -15,7 +15,6 @@ angular.module('lkhan')
         var itemMountNode = null, itemRenderer = null;
 
         scope.$watch('question', function () {
-          console.log(scope.question);
           // Cleanup old container
           if (itemMountNode) {
             React.unmountComponentAtNode(itemMountNode);
@@ -30,9 +29,6 @@ angular.module('lkhan')
               useMathQuill: true
             }
           }, null), itemMountNode);
-
-          // todo: create touch input for numbers
-          _.each(scope.question.question.widgets, function(item){console.log(item.options.answerType); });
 
           itemMountNode.focus();
           PersusService.setItemRenderer(itemRenderer);

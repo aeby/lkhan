@@ -1,3 +1,4 @@
+'use strict';
 angular.module('lkhan').factory('Student', function (DS) {
 
   return DS.defineResource({

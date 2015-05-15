@@ -19,7 +19,7 @@ angular.module('lkhan')
           topics: topics,
           exercises: exercises,
           videos: videos
-        }
+        };
       }
 
       $http.get('static/khan/topics.json')
@@ -72,7 +72,7 @@ angular.module('lkhan')
     };
 
     this.getTutorialContents = function (topicSlug, tutorialSlug) {
-      return _.filter(this.getTopic(topicSlug)['tutorials'], {'slug': tutorialSlug})[0]['tutorial_contents']
+      return _.filter(this.getTopic(topicSlug).tutorials, {'slug': tutorialSlug})[0].tutorialContents;
     };
 
     this.getVideo = function (videoId) {

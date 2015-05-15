@@ -331,11 +331,6 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: '.',
-          src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
-          dest: '<%= yeoman.dist %>/static'
-        }, {
-          expand: true,
           cwd: '<%= yeoman.app %>/static/scripts/perseus/lib/katex',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>/static/styles'
@@ -351,14 +346,9 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/static/scripts'
         }, {
           expand: true,
-          cwd: '<%= yeoman.app %>/static/scripts',
-          src: 'ng-perseus-build.js',
-          dest: '<%= yeoman.dist %>/static/scripts'
-        }, {
-          expand: true,
-          cwd: '<%= yeoman.app %>/static/scripts',
-          src: 'perseus/lib/react-with-addons.js',
-          dest: '<%= yeoman.dist %>/static/scripts'
+          cwd: '<%= yeoman.app %>/static/scripts/pe',
+          src: ['ng-perseus-build.js', 'react-with-addons-0.13.3.js'],
+          dest: '<%= yeoman.dist %>/static/scripts/pe'
         }]
       },
       styles: {
@@ -372,10 +362,10 @@ module.exports = function (grunt) {
     requirejs: {
       compile: {
         options: {
-          baseUrl: '<%= yeoman.app %>/static/scripts',
-          mainConfigFile: '<%= yeoman.app %>/static/scripts/ng-perseus.js',
+          baseUrl: '<%= yeoman.app %>/static/scripts/pe',
+          mainConfigFile: '<%= yeoman.app %>/static/scripts/pe/ng-perseus.js',
           name: 'ng-perseus',
-          out: '<%= yeoman.app %>/static/scripts/ng-perseus-build.js'
+          out: '<%= yeoman.app %>/static/scripts/pe/ng-perseus-build.js'
         }
       }
     },

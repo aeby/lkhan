@@ -1,11 +1,7 @@
 'use strict';
 
 angular.module('lkhan')
-  .service('TutorialService', function ($http, $q, ContentService) {
+  .service('TutorialService', function () {
 
-
-    this.getVideo = function(videoId){
-      return '';
-    }
 
   });

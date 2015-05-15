@@ -36,10 +36,10 @@ angular.module('lkhan')
     $scope.removeStudent = function (id) {
       var st = Student.get(id);
       st.active = false;
-      Student.save(id).then(function (s) {
+      Student.save(id).then(function () {
       }, function (err) {
         console.error(err);
-      })
+      });
     };
 
     $scope.languages = ['en', 'es'];
