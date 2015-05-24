@@ -1,21 +1,40 @@
-<perseus ng-if="exercise" question="exercise"></perseus>
+<nav class="tc-nav">
+  <a class="pull-left tc-close"
+     ui-sref="khan.tutorials({topicSlug: $stateParams.topicSlug, tutorialSlug: $stateParams.tutorialSlug})"><span
+    class="icon-close"></span></a>
+
+  <div class="tc-progress">
+    <span>{{ 'ASSESSMENT_ROW' | translate }}</span>
+
+    <div class="tc-progress-wrap">
+      <div class="tc-progress-dot">
+        <span class="icon-check-alt"></span>
+      </div>
+      <div class="tc-progress-dot">
+        <span class="icon-check-alt"></span>
+      </div>
+      <div class="tc-progress-dot">
+        <span class="icon-check-alt"></span>
+      </div>
+      <div class="tc-progress-dot">
+        <span class="icon-check-alt"></span>
+      </div>
+      <div class="tc-progress-dot">
+        <span class="icon-check-alt"></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<perseus question="exercise"></perseus>
 
 <div ng-show="answerState">
   {{answerState}}
 </div>
-<div class="lk-assessment-bmenu clearfix">
-  <ul class="list-inline pull-right">
-    <li>
-      <!--Consigue 5 aciertos consecutivos-->
-    </li>
-    <li>
-      <button ng-click="showHint()" class="btn btn-info btn-lg">{{ 'SHOW_HINT' | translate }}</button>
-    </li>
-    <li>
-      <button ng-click="checkAnswer()" class="btn btn-info btn-lg">{{ answerBtn | translate }}</button>
-    </li>
-    <li>
-      <button ng-show="ssa" class="btn btn-info btn-lg">{{ 'NEXT_LESSON' | translate }}</button>
-    </li>
-  </ul>
+
+<div class="lk-ase-bmenu">
+  <div class="lk-ase">
+    <button ng-click="showHint()" class="btn btn-info btn-lg">{{ 'SHOW_HINT' | translate }}</button>
+    <button ng-click="checkAnswer()" class="btn btn-success btn-lg ase-check">{{ answerBtn | translate }}</button>
+  </div>
 </div>

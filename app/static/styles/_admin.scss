@@ -1,0 +1,14 @@
+.user-list {
+  li {
+    margin-bottom: 20px;
+  }
+}
+
+.user-list-item {
+  display: flex;
+
+  & > :first-child {
+    flex-grow: 1;
+    margin-right: 10px;
+  }
+}

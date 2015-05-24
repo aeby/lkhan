@@ -1,0 +1,17 @@
+/* raleway-regular - latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'),
+  url('fonts/raleway-v9-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+ */ url('fonts/raleway-v9-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* raleway-800 - latin */
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Raleway ExtraBold'), local('Raleway-ExtraBold'),
+  url('fonts/raleway-v9-latin-800.woff2') format('woff2'), /* Chrome 26+, Opera 23+ */ url('fonts/raleway-v9-latin-800.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}

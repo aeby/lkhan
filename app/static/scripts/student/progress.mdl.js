@@ -1,5 +1,5 @@
 'use strict';
-angular.module('lkhan').factory('Student', function (DS) {
+angular.module('lkhan').factory('TopicProgress', function ($translate, DS) {
 
   return DS.defineResource({
     name: 'student',
@@ -7,7 +7,7 @@ angular.module('lkhan').factory('Student', function (DS) {
     beforeCreate: function (resourceName, attrs, cb) {
       DS.findAll('student', {name: attrs.name}).then(function (students) {
         if (students.length) {
-          cb('Ya hay un estudiante con este nombre');
+          cb($translate.instant('ADMIN_USER_EXISTS'));
         } else {
           cb(null, attrs);
         }
@@ -15,7 +15,7 @@ angular.module('lkhan').factory('Student', function (DS) {
     },
     validate: function (resourceName, attrs, cb) {
       if (!attrs.name || attrs.name.length < 1) {
-        cb('Nombre inválido');
+        cb($translate.instant('ADMIN_USER_INVALID'));
       } else {
         cb(null, attrs);
       }

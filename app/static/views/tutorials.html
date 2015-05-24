@@ -1,2 +1,17 @@
-<div class="lk-assessment" ui-view></div>
-<lk-menu menu-items="menuItems"></lk-menu>
+<nav class="tr-nav">
+  <a ui-sref="khan.classroom"><span class="back icon-arrow-back"></span> {{tutorial.title}}</a>
+</nav>
+
+
+<div class="list-unstyled tc-cnt">
+  <div class="tc-card" ng-repeat="tutorialContent in tutorialContents">
+    <span class="tc-number" ng-class="colorClass">
+      {{ $index + 1 }}
+    </span>
+    <h4>{{tutorialContent.title}}</h4>
+
+
+    <a ng-href="{{tutorialContent.href}}"
+       class="btn btn-lg" ng-class="btnClass">{{tutorialContent.action}}</a>
+  </div>
+</div>

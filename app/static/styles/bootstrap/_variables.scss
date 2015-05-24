@@ -21,6 +21,11 @@ $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
 
+$tutorial-blue:         #1cb0f6 !default;
+$tutorial-green:        #7ac70c !default;
+$tutorial-red:          #d33131 !default;
+$tutorial-yellow:       #feba11 !default;
+
 
 //== Scaffolding
 //
@@ -36,7 +41,7 @@ $link-color:            $brand-primary !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      darken($link-color, 15%) !default;
 //** Link hover decoration.
-$link-hover-decoration: underline !default;
+$link-hover-decoration: none !default;
 
 
 //== Typography
@@ -172,6 +177,22 @@ $btn-warning-border:             darken($btn-warning-bg, 5%) !default;
 $btn-danger-color:               #fff !default;
 $btn-danger-bg:                  $brand-danger !default;
 $btn-danger-border:              darken($btn-danger-bg, 5%) !default;
+
+$btn-blue-color:                 #fff !default;
+$btn-blue-bg:                    $tutorial-blue !default;
+$btn-blue-border:                darken($btn-blue-bg, 5%) !default;
+
+$btn-green-color:                #fff !default;
+$btn-green-bg:                   $tutorial-green !default;
+$btn-green-border:               darken($btn-green-bg, 5%) !default;
+
+$btn-red-color:                  #fff !default;
+$btn-red-bg:                     $tutorial-red !default;
+$btn-red-border:                 darken($btn-red-bg, 5%) !default;
+
+$btn-yellow-color:               #fff !default;
+$btn-yellow-bg:                  $tutorial-yellow !default;
+$btn-yellow-border:              darken($btn-yellow-bg, 5%) !default;
 
 $btn-link-disabled-color:        $gray-light !default;
 

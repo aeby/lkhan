@@ -1,30 +1,29 @@
 <nav class="cr-nav">
   <a class="pull-left logo" ui-sref="khan.classroom"><span class="icon-leaf"></span></a>
   <span class="pull-left">{{currentStudent.name}}</span>
-  <a class="pull-right menu" ui-sref="admin"><span class="icon-settings"></span></a>
+  <a class="pull-right admin" ui-sref="admin"><span class="icon-settings"></span></a>
+  <a class="pull-right fullscreen" ng-click="toggleFullScreen()"><span class="icon-enlarge"></span></a>
 </nav>
 
-<ul class="list-unstyled toc">
+<div class="cnt-md text-center" ng-hide="currentStudent">
+  <h2><a ui-sref="admin" >{{ 'ADMIN_LOAD_STUDENT' | translate }}</a></h2>
+</div>
+
+<ul ng-show="currentStudent" class="list-unstyled toc">
   <li ng-repeat="topic in toc">
     <h2>{{topic.title}}</h2>
     <ul class="list-unstyled">
       <li class="row" ng-repeat="row in topic.rows">
         <a ui-sref="khan.tutorials({topicSlug: topic.slug,  tutorialSlug: tutorial.slug })"
            ng-class="row-{{row.length}}" ng-repeat="tutorial in row">
-          <div class="circle">
+          <div class="circle" ng-class="getTutorialClass(tutorial)">
             <div class="logo"></div>
           </div>
+          <div ng-show="tutorial.total && (topicProgress[tutorial.slug] < tutorial.total || !topicProgress[tutorial.slug])" class="text-muted">{{ topicProgress[tutorial.slug] || '0' }}/{{ tutorial.total }}</div>
           {{tutorial.title}}
         </a>
       </li>
     </ul>
-
-    <div class="list-group">
-      <a ui-sref="khan.tutorials({topicSlug: topic.slug,  tutorialSlug: tutorial.slug })" class="list-group-item"
-         ng-repeat="tutorial in topic.tutorials">
-        {{tutorial.title}}
-      </a>
-    </div>
   </li>
 </ul>
 

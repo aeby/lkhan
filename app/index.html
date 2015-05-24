@@ -9,6 +9,7 @@
 
   <!-- build:css(app) static/styles/vendor.css -->
   <link rel="stylesheet" type="text/css" href="static/styles/khan-site.css"/>
+  <link rel="stylesheet" type="text/css" href="static/styles/khan-exercise.css"/>
   <link rel="stylesheet" type="text/css" href="static/scripts/perseus/lib/katex/katex.css"/>
   <link rel="stylesheet" type="text/css" href="static/scripts/perseus/lib/mathquill/mathquill.css"/>
   <link rel="stylesheet" href="static/scripts/perseus/build/perseus-3.css">
@@ -26,7 +27,7 @@
   <link rel="apple-touch-icon-precomposed" sizes="144x144"
         href="static/images/apple-touch-icon-144x144-precomposed.png"/>
 </head>
-<body>
+<body ng-class="bgColor">
   <div ui-view></div>
 
   <script type="text/javascript">
@@ -61,6 +62,7 @@
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-translate/angular-translate.js"></script>
   <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
   <script src="bower_components/localforage/dist/localforage.nopromises.js"></script>
   <script src="bower_components/js-data/dist/js-data.js"></script>
   <script src="bower_components/js-data-localforage/dist/js-data-localforage.js"></script>
@@ -80,7 +82,8 @@
   <script src="static/scripts/tutorial/perseus.srv.js"></script>
 
   <script src="static/scripts/admin/admin.ctrl.js"></script>
-  <script src="static/scripts/admin/student.mdl.js"></script>
+  <script src="static/scripts/admin/login.ctrl.js"></script>
+  <script src="static/scripts/student/student.mdl.js"></script>
 
   <script src="static/scripts/directives/perseus.js"></script>
   <script src="static/scripts/directives/menu.js"></script>

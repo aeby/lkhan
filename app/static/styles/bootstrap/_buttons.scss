@@ -80,6 +80,22 @@
   @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
 }
 
+.btn-tc-blue {
+  @include button-variant($btn-blue-color, $btn-blue-bg, $btn-blue-border);
+}
+
+.btn-tc-red {
+  @include button-variant($btn-red-color, $btn-red-bg, $btn-red-border);
+}
+
+.btn-tc-green {
+  @include button-variant($btn-green-color, $btn-green-bg, $btn-green-border);
+}
+
+.btn-tc-yellow {
+  @include button-variant($btn-yellow-color, $btn-yellow-bg, $btn-yellow-border);
+}
+
 
 // Link buttons
 // -------------------------

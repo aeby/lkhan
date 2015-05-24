@@ -6,7 +6,8 @@ angular.module('lkhan')
     var topics = null,
       topicIndex = null,
       exercises = null,
-      videos = null;
+      videos = null,
+      colors = ['blue', 'green', 'red', 'green', 'red', 'blue', 'green', 'green', 'red', 'blue', 'blue', 'green', 'red', 'green', 'blue', 'blue', 'green', 'blue', 'blue', 'green'];
 
     this.loadContent = function () {
       var deferredTopics = $q.defer(),
@@ -14,7 +15,7 @@ angular.module('lkhan')
         deferredVideos = $q.defer();
 
       // already loaded
-      if (topicIndex && exercises && videos) {
+      if (topics && exercises && videos) {
         return {
           topics: topics,
           exercises: exercises,
@@ -26,6 +27,17 @@ angular.module('lkhan')
         .success(function (data) {
           topics = data.topics;
           topicIndex = _.indexBy(topics, 'slug');
+
+          // colorize tutorials and calculate total exercises
+          var cIndex = 0, colorLength = colors.length;
+          _.each(topics, function (topic) {
+            _.each(topic.tutorials, function (tutorial) {
+              tutorial.color = colors[cIndex % colorLength];
+              tutorial.total = _.filter(tutorial.tutorialContents, {type: 'e'}).length;
+              cIndex = cIndex + 1;
+            });
+          });
+
           deferredTopics.resolve(data);
           return topics;
         })
@@ -71,16 +83,20 @@ angular.module('lkhan')
       return topicIndex[topicSlug];
     };
 
+    this.getTutorial = function (topicSlug, tutorialSlug) {
+      return _.filter(this.getTopic(topicSlug).tutorials, {'slug': tutorialSlug})[0];
+    };
+
     this.getTutorialContents = function (topicSlug, tutorialSlug) {
-      return _.filter(this.getTopic(topicSlug).tutorials, {'slug': tutorialSlug})[0].tutorialContents;
+      return this.getTutorial(topicSlug, tutorialSlug).tutorialContents;
     };
 
     this.getVideo = function (videoId) {
       return videos[videoId];
     };
 
-    this.getExercises = function (topicSlug) {
-      return exercises[topicSlug];
+    this.getExercises = function (tutorialContentId) {
+      return exercises[tutorialContentId];
     };
 
   });

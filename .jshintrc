@@ -20,6 +20,7 @@
   "globals": {
     "angular": false,
     "React": false,
-    "_": false
+    "_": false,
+    "localforage": false
   }
 }

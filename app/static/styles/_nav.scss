@@ -10,15 +10,82 @@
     line-height: 30px;
     font-size: $font-size-large;
     text-decoration: none;
+    color: $gray-dark;
 
-    &.menu {
-      color: $gray-dark;
+    &.admin {
       font-size: 30px;
     }
 
     &.logo {
       color: #9eb63a;
       font-size: 30px;
+    }
+
+    &.fullscreen {
+      cursor: pointer;
+      font-size: 20px;
+      padding: 20px 2%;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.tr-nav {
+  @include clearfix;
+
+  & > span, a {
+    display: inline-block;
+    padding: 16px 2%;
+    line-height: 30px;
+    font-size: $font-size-large;
+    text-decoration: none;
+    color: #fff;
+  }
+}
+
+.tc-nav {
+  margin: 0 auto 50px;
+  width: 94%;
+  display: flex;
+  justify-content: space-between;
+
+  .tc-close {
+    display: inline-block;
+    font-size: 30px;
+    color: $gray-light;
+    line-height: 30px;
+    padding: 20px 0 14px;
+    text-decoration: none;
+  }
+
+  .tc-progress {
+    display: flex;
+    span {
+      line-height: 30px;
+      font-size: $font-size-base;
+      padding: 20px 0 14px;
+      margin-right: 14px;
+      white-space: nowrap;
+    }
+  }
+
+  .tc-progress-wrap {
+    padding: 16px 0;
+    display: flex;
+  }
+
+  .tc-progress-dot {
+    background-color: $gray-lighter;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: 8px;
+
+    &:last-child{
+      margin-right: 0;
     }
   }
 }

@@ -11,6 +11,11 @@ $gray-disc-hover: lighten($gray-base, 77.5%) !default;
 
   h2 {
     margin-bottom: 24px;
+    margin-top: 62px;
+
+    &:first-child {
+      margin-top: $line-height-computed;
+    }
   }
 
   li.row {
@@ -38,7 +43,7 @@ $gray-disc-hover: lighten($gray-base, 77.5%) !default;
       }
 
       &:hover {
-         color: $gray-darker;
+        color: $gray-darker;
         .circle {
           background-color: $gray-disc-hover;
         }
@@ -52,9 +57,20 @@ $gray-disc-hover: lighten($gray-base, 77.5%) !default;
         background-color: $gray-disc;
         color: #fff;
 
+        &.bg-yellow {
+          background-image: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255, 255, 255, .24) 8px, rgba(255, 255, 255, .24) 16px);
+        }
+
+        &.bg-yellow {
+          .logo {
+            opacity: 1;
+            background-image: url(../images/leaf-gold.svg);
+          }
+        }
+
         .logo {
-          background: transparent url(/static/images/leaf.svg) no-repeat 50% 50%;
-          background-size: 42%;
+          background: transparent url(../images/leaf.svg) no-repeat 50% 50%;
+          background-size: 50%;
           height: 100%;
           width: 100%;
           margin: 0 auto;

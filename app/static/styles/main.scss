@@ -27,12 +27,14 @@ $icon-font-path: "/static/styles/fonts/";
 @import "bootstrap/utilities";
 //@import "bootstrap/responsive-utilities";
 
+@import "fonts";
 @import "iconmoon";
 @import "nav";
 @import "assessment";
-@import "menu";
+@import "tutorial";
 @import "classroom";
-@import "dl"; // prototype only
+@import "admin";
+@import "perseus";
 
 .browsehappy {
   margin: 0.2em 0;
@@ -41,15 +43,14 @@ $icon-font-path: "/static/styles/fonts/";
   padding: 0.2em 0;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin: 0 0 66px; //footer height
   -webkit-font-smoothing: antialiased;
+  font-family: 'Raleway', sans-serif;
   height: 100%;
+
+  &.bg-yellow {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 16px, rgba(255, 0, 0, 0.06) 16px, rgba(255, 0, 0, 0.06) 32px);
+  }
 }
 
 footer {
@@ -71,7 +72,34 @@ footer {
   height: 100%;
 }
 
-.cnt-md{
+.cnt-md {
   width: 80%;
-  margin: 0 auto;
+  margin: 40px auto 0;
+
+  & > :first-child {
+    margin-top: 0;
+  }
 }
+
+.bg-blue {
+  background-color: $tutorial-blue !important;
+}
+
+.bg-red {
+  background-color: $tutorial-red !important;
+}
+
+.bg-green {
+  background-color: $tutorial-green !important;
+}
+
+.bg-yellow {
+  background-color: $tutorial-yellow !important;
+}
+
+ui-view, perseus {
+  display: block;
+}
+
+
+

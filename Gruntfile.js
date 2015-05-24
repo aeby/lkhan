@@ -349,6 +349,16 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>/static/scripts/pe',
           src: ['ng-perseus-build.js', 'react-with-addons-0.13.3.js'],
           dest: '<%= yeoman.dist %>/static/scripts/pe'
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/static/locales',
+          src: ['*.json'],
+          dest: '<%= yeoman.dist %>/static/locales'
+        }, {
+          expand: true,
+          cwd: '<%= yeoman.app %>/static/sound',
+          src: ['*.ogg'],
+          dest: '<%= yeoman.dist %>/static/sound'
         }]
       },
       styles: {
@@ -423,11 +433,6 @@ module.exports = function (grunt) {
       'connect:livereload',
       'watch'
     ]);
-  });
-
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
   });
 
   grunt.registerTask('test', [

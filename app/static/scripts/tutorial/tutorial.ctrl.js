@@ -8,36 +8,58 @@
  * Controller of the lkhan
  */
 angular.module('lkhan')
-  .controller('TutorialCtrl', function ($scope, $log, $state, $stateParams, $rootScope, ContentService) {
-    var tutorialContents = ContentService.getTutorialContents($stateParams.topicSlug, $stateParams.tutorialSlug),
-      menuItems = [];
+  .controller('TutorialCtrl', function ($rootScope, $scope, $log, $state, $stateParams, $translate, ContentService) {
+    var tutorial = ContentService.getTutorial($stateParams.topicSlug, $stateParams.tutorialSlug),
+      tutorialContents = ContentService.getTutorialContents($stateParams.topicSlug, $stateParams.tutorialSlug);
 
     function getTCStateName(type) {
-      return type === 'v' ? 'khan.tutorials.video' : 'khan.tutorials.exercise';
+      return type === 'v' ? 'khan.video' : 'khan.exercise';
+    }
+
+    $scope.topicProgress = {
+      'cc-early-math-counting': 3,
+      'cc-early-math-numbers-120': 2,
+      'cc-early-math-count-object-topic': 1,
+      'cc-early-math-together-apart': 1,
+    };
+
+    $rootScope.bgColor = 'bg-' + tutorial.color;
+    $scope.btnClass = 'btn-tc-' + tutorial.color;
+    $scope.colorClass = 'tc-' + tutorial.color;
+
+    var progress = $scope.topicProgress[tutorial.slug];
+    if (progress && progress === tutorial.total) {
+      $rootScope.bgColor = 'bg-yellow';
+      $scope.btnClass = 'btn-tc-yellow';
+      $scope.colorClass = 'tc-yellow';
     }
 
     _.each(tutorialContents, function (tc) {
-      menuItems.push({
-        href: $state.href(getTCStateName(tc.type), {tutorialContentId: tc.id}),
-        label: tc.title,
-        type: tc.type
+      tc.state = 'open';
+      tc.action = tc.type === 'v' ? $translate.instant('VIDEO_WATCH') : $translate.instant('EXERCISE_START');
+      tc.href = $state.href(getTCStateName(tc.type), {
+        topicSlug: $stateParams.topicSlug,
+        tutorialSlug: $stateParams.tutorialSlug,
+        tutorialContentId: tc.id
       });
     });
 
-    $scope.menuItems = menuItems;
+    $scope.tutorialContents = tutorialContents;
+    $scope.tutorial = tutorial;
 
-    $rootScope.$on('lk-ex-done', function(){
+    $rootScope.$on('lk-ex-done', function () {
       console.log('done');
     });
 
     // load progress if any or set first
-    var tc = tutorialContents[0];
-    $state.go(getTCStateName(tc.type), {tutorialContentId: tc.id});
+    // var tc = tutorialContents[0];
+    //$state.go(getTCStateName(tc.type), {tutorialContentId: tc.id});
   })
   .controller('ExerciseCtrl', function ($scope, $log, $rootScope, $stateParams, ContentService, PersusService) {
     var exercises = ContentService.getExercises($stateParams.tutorialContentId);
     $scope.exercise = exercises[0];
     $scope.answerBtn = 'CHECK_ANSWER';
+    $rootScope.bgColor = '';
     var next = false;
 
     $scope.showHint = function () {
@@ -45,14 +67,14 @@ angular.module('lkhan')
     };
 
     $scope.checkAnswer = function () {
-      if(next){
+      if (next) {
         next = false;
         $scope.answerBtn = 'CHECK_ANSWER';
         var index = exercises.indexOf($scope.exercise);
-        if(index >= exercises.length){
+        if (index >= exercises.length) {
           $rootScope.$broadcast('lk-ex-done');
-        }else {
-          $scope.exercise = exercises[index+1];
+        } else {
+          $scope.exercise = exercises[index + 1];
         }
         $scope.answerState = null;
         return;
@@ -67,9 +89,10 @@ angular.module('lkhan')
       }
     };
   })
-  .controller('VideoCtrl', function ($scope, $log, $stateParams, ContentService) {
+  .controller('VideoCtrl', function ($rootScope, $scope, $log, $stateParams, ContentService) {
     $scope.video = ContentService.getVideo($stateParams.tutorialContentId);
     $scope.showNext = false;
+    $rootScope.bgColor = '';
     $scope.videoDone = function () {
       $scope.showNext = true;
     };
