@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('lkhan')
-  .controller('AdminCtrl', function ($scope, $rootScope, $translate, DS, Student) {
+  .controller('AdminCtrl', function ($window, $scope, $rootScope, $translate, DS, Student) {
 
     Student.bindAll({active: true}, $rootScope, 'students');
     DS.findAll('student');
@@ -34,41 +34,40 @@ angular.module('lkhan')
     };
 
     $scope.removeStudent = function (id) {
-      var st = Student.get(id);
-      st.active = false;
-      Student.save(id).then(function () {
-      }, function (err) {
-        console.error(err);
-      });
+      if ($window.confirm($translate.instant('ADMIN_USER_DELETE'))) {
+        var st = Student.get(id);
+        st.active = false;
+        st.name = st.name + '_deactivated_' + Date.now();
+        Student.save(id).then(function () {
+        }, function (err) {
+          console.error(err);
+        });
+      }
     };
 
     $scope.languages = ['en', 'es'];
+    $scope.currentLanguage = $translate.proposedLanguage() || $translate.use();
+
     $scope.changeLanguage = function (code) {
       $translate.use(code);
+      $scope.currentLanguage = code;
     };
 
-    $scope.toggleFullScreen = function () {
-      if (!document.fullscreenElement &&    // alternative standard method
-        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {  // current working methods
-        if (document.documentElement.requestFullscreen) {
-          document.documentElement.requestFullscreen();
-        } else if (document.documentElement.msRequestFullscreen) {
-          document.documentElement.msRequestFullscreen();
-        } else if (document.documentElement.mozRequestFullScreen) {
-          document.documentElement.mozRequestFullScreen();
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-        }
+    $scope.pwForm = {
+      pw: ''
+    };
+    $scope.pwError = null;
+    $scope.pwSuccess = null;
+
+    $scope.updatePassword = function () {
+      if ($scope.pwForm.pw && $scope.pwForm.pw.length > 3) {
+        localforage.setItem('lk-pw', $scope.pwForm.pw);
+        $scope.pwError = null;
+        $scope.pwSuccess = $translate.instant('ADMIN_PASSWORD_UPDATE_OK');
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        }
+        $scope.pwError = $translate.instant('ADMIN_PASSWORD_UPDATE_FAIL');
+        $scope.pwSuccess = null;
       }
     };
+
   });

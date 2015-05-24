@@ -20,7 +20,10 @@ angular
         template: '<ui-view/>',
         abstract: true,
         resolve: {
-          content: function (ContentService) {
+          content: function ($rootScope, ContentService, Student) {
+            Student.find('8e860909-b976-4262-89a6-378ba1527a78').then(function (student) {
+              $rootScope.currentStudent = student;
+            });
             return ContentService.loadContent();
           }
         }
@@ -35,43 +38,35 @@ angular
         controller: 'TutorialCtrl',
         templateUrl: 'static/views/tutorials.html'
       })
-      .state('khan.tutorials.exercise', {
-        url: '/e/{tutorialContentId}',
+      .state('khan.exercise', {
+        url: '/{topicSlug}/tutorial/{tutorialSlug}/e/{tutorialContentId}',
         controller: 'ExerciseCtrl',
         templateUrl: 'static/views/exercise.html'
       })
-      .state('khan.tutorials.video', {
-        url: '/v/{tutorialContentId}',
+      .state('khan.video', {
+        url: '/{topicSlug}/tutorial/{tutorialSlug}/v/{tutorialContentId}',
         controller: 'VideoCtrl',
         templateUrl: 'static/views/video.html'
       })
       .state('admin', {
         url: '/admin',
         controller: 'AdminCtrl',
-        templateUrl: 'static/views/admin.html'
+        templateUrl: 'static/views/admin.html',
+        data: {
+          requireLogin: true
+        }
+      })
+      .state('login', {
+        url: '/login',
+        controller: 'LoginCtrl',
+        templateUrl: 'static/views/login.html'
       });
 
-    $translateProvider.translations('en', {
-      'NEXT_LESSON': 'Go to next lesson',
-      'SHOW_HINT': 'I\'d like a hint',
-      'CHECK_ANSWER': 'Check answer',
-      'ANSWER_INCORRECT': 'Incorrect answer, please try again.',
-      'ANSWER_CORRECT': 'Correct! Next question...',
-      'ANSWER_DONE': 'Awesome! Show points...',
-      'ANSWER_NEXT': 'Next'
-
+    $translateProvider.useStaticFilesLoader({
+      prefix: '/static/locales/',
+      suffix: '.json'
     });
-
-    $translateProvider.translations('es', {
-      'NEXT_LESSON': 'Ir a la siguiente lección',
-      'SHOW_HINT': 'Me gustaría una pista',
-      'CHECK_ANSWER': 'Comprueba tu respuesta',
-      'ANSWER_INCORRECT': 'Respuesta incorrecta, por favor intenta de nuevo.',
-      'ANSWER_CORRECT': '¡Correcto! Siguiente pregunta...',
-      'ANSWER_DONE': '¡Impresionante! Mostrar los puntos de...',
-      'ANSWER_NEXT': 'Proxima'
-    });
-
+    $translateProvider.useSanitizeValueStrategy('escaped');
     $translateProvider.preferredLanguage('en');
     $translateProvider.useCookieStorage();
   })
@@ -80,4 +75,20 @@ angular
     $rootScope.$stateParams = $stateParams;
 
     DS.registerAdapter('localforage', DSLocalForageAdapter, {default: true});
+
+    // set default password to 1234
+    localforage.getItem('lk-pw', function (err, pw) {
+      if(!pw){
+        localforage.setItem('lk-pw', '1234');
+      }
+    });
+
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
+      if (toState.data && toState.data.requireLogin && !$rootScope.loggedIn && false) {
+        event.preventDefault();
+        $state.go('login');
+      } else {
+        $rootScope.loggedIn = false;
+      }
+    });
   });
