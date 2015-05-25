@@ -28,7 +28,7 @@ angular.module('lkhan')
           topics = data.topics;
           topicIndex = _.indexBy(topics, 'slug');
 
-          // colorize tutorials and calculate total exercises
+          // colorize tutorials add calculate total exercises
           var cIndex = 0, colorLength = colors.length;
           _.each(topics, function (topic) {
             _.each(topic.tutorials, function (tutorial) {

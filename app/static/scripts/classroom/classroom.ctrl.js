@@ -15,10 +15,6 @@ angular.module('lkhan')
 
     $rootScope.bgColor = '';
 
-    var topicProgress = {
-
-    }
-
     $scope.topicProgress = {
       'cc-early-math-counting': 3,
       'cc-early-math-numbers-120': 2,

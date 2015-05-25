@@ -3,7 +3,8 @@
 }
 
 .lk-video {
-  width: 80%;
+  width: 65%;
+  margin-bottom: 30px;
 }
 
 perseus {
@@ -16,10 +17,37 @@ perseus {
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   padding: 20px 0;
 
+  &.lk-ase-correct {
+    background-color: #f5ffd5;
+    span {
+      color: #78c800;
+    }
+  }
+
+  &.lk-ase-wrong {
+    background-color: #ffeceb;
+
+    span {
+      color: #e83c1e;
+    }
+  }
+
+  .ase-result {
+    padding: $padding-large-vertical 0;
+    span {
+      font-size: $font-size-large;
+      line-height: $line-height-large;
+    }
+  }
+
   .lk-ase {
     display: flex;
     width: 590px;
     margin: 0 auto;
+
+    &.lk-ase-video {
+      width: 65%;
+    }
 
     * {
       width: 48%;
@@ -30,12 +58,18 @@ perseus {
     }
   }
 
-  .ase-result {
-    flex: 1 0 auto;
-  }
-
   .ase-check {
     min-width: 30%;
   }
 }
 
+.exercise-done{
+  text-align: center;
+  h1{
+    margin-bottom: 30px;
+  }
+
+  div{
+    margin-top: 30px;
+  }
+}

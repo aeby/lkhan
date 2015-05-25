@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lkhan')
-  .directive('perseus', function ($window, PersusService) {
+  .directive('perseus', function ($window, PerseusService) {
 
     return {
       restrict: 'E',
@@ -31,7 +31,7 @@ angular.module('lkhan')
           }, null), itemMountNode);
 
           itemMountNode.focus();
-          PersusService.setItemRenderer(itemRenderer);
+          PerseusService.setItemRenderer(itemRenderer);
         });
 
 

@@ -51,6 +51,10 @@
   display: flex;
   justify-content: space-between;
 
+  &.tc-nav-nospace {
+    margin-bottom: 0;
+  }
+
   .tc-close {
     display: inline-block;
     font-size: 30px;
@@ -62,7 +66,7 @@
 
   .tc-progress {
     display: flex;
-    span {
+    & > span {
       line-height: 30px;
       font-size: $font-size-base;
       padding: 20px 0 14px;
@@ -74,18 +78,12 @@
   .tc-progress-wrap {
     padding: 16px 0;
     display: flex;
-  }
 
-  .tc-progress-dot {
-    background-color: $gray-lighter;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    float: left;
-    margin-right: 8px;
-
-    &:last-child{
-      margin-right: 0;
+    progress-dot {
+      margin-right: 8px;
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
 }

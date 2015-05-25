@@ -1,16 +1,22 @@
 'use strict';
 
 angular.module('lkhan')
-  .service('PersusService', function () {
+  .service('PerseusService', function ($q) {
 
-    var itemRenderer;
+    var itemRenderer, hints = $q.defer();
 
     this.setItemRenderer = function (ir) {
       itemRenderer = ir;
+      hints.resolve(itemRenderer.getNumHints());
+      hints = $q.defer();
     };
 
     this.showHint = function () {
       return itemRenderer.showHint();
+    };
+
+    this.getNumHints = function () {
+      return hints.promise;
     };
 
     this.scoreInput = function () {

@@ -36,7 +36,7 @@ angular
       .state('khan.tutorials', {
         url: '/{topicSlug}/tutorial/{tutorialSlug}',
         controller: 'TutorialCtrl',
-        templateUrl: 'static/views/tutorials.html'
+        templateUrl: 'static/views/tutorial.html'
       })
       .state('khan.exercise', {
         url: '/{topicSlug}/tutorial/{tutorialSlug}/e/{tutorialContentId}',
@@ -78,7 +78,7 @@ angular
 
     // set default password to 1234
     localforage.getItem('lk-pw', function (err, pw) {
-      if(!pw){
+      if (!pw) {
         localforage.setItem('lk-pw', '1234');
       }
     });

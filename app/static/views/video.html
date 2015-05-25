@@ -1,4 +1,4 @@
-<nav class="tc-nav">
+<nav class="tc-nav tc-nav-nospace">
   <a class="pull-left tc-close"
      ui-sref="khan.tutorials({topicSlug: $stateParams.topicSlug, tutorialSlug: $stateParams.tutorialSlug})"><span
     class="icon-close"></span></a>
@@ -10,11 +10,10 @@
   </video>
 </div>
 
-
-<div class="lk-assessment-bmenu clearfix">
-  <ul class="list-inline pull-right ">
-    <li>
-      <button ng-show="showNext" class="btn btn-info btn-lg">{{ 'NEXT_LESSON' | translate }}</button>
-    </li>
-  </ul>
+<div class="lk-ase-bmenu">
+  <div class="lk-ase lk-ase-video">
+    <span></span>
+    <a ui-sref="khan.tutorials({topicSlug: $stateParams.topicSlug,  tutorialSlug: $stateParams.tutorialSlug })"
+       ng-show="showNext" class="btn btn-success btn-lg">{{ 'ASSESSMENT_NEXT' | translate }}</a>
+  </div>
 </div>
