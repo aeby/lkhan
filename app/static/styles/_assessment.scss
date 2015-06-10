@@ -18,17 +18,17 @@ perseus {
   padding: 20px 0;
 
   &.lk-ase-correct {
-    background-color: #f5ffd5;
+    background-color: $exercise-correct-bg;
     span {
-      color: #78c800;
+      color: $exercise-correct-text;
     }
   }
 
   &.lk-ase-wrong {
-    background-color: #ffeceb;
+    background-color: $exercise-wrong-bg;
 
     span {
-      color: #e83c1e;
+      color: $exercise-wrong-text;
     }
   }
 

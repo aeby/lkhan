@@ -22,6 +22,7 @@
   text-align: center;
   text-decoration: none;
   padding: 1em;
+  position: relative;
 
   h4 {
     flex: 1 0 auto;
@@ -39,6 +40,24 @@
 
   &:hover {
     text-decoration: none;
+  }
+
+  .tc-done{
+    background-color: #FFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    text-align: center;
+
+    div{
+      font-size: 30px;
+      color: $tutorial-yellow;
+      padding-top: 8px;
+    }
+
   }
 }
 

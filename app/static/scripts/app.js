@@ -9,7 +9,7 @@ angular
     'ngTouch',
     'pascalprecht.translate',
     'ui.router',
-    'js-data'
+    'angular-lfmo'
   ])
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
     $locationProvider.html5Mode(true);
@@ -20,10 +20,7 @@ angular
         template: '<ui-view/>',
         abstract: true,
         resolve: {
-          content: function ($rootScope, ContentService, Student) {
-            Student.find('8e860909-b976-4262-89a6-378ba1527a78').then(function (student) {
-              $rootScope.currentStudent = student;
-            });
+          content: function ($rootScope, ContentService) {
             return ContentService.loadContent();
           }
         }
@@ -48,7 +45,15 @@ angular
         controller: 'VideoCtrl',
         templateUrl: 'static/views/video.html'
       })
-      .state('admin', {
+      .state('khan.stats', {
+        url: '/stats',
+        controller: 'StatsCtrl',
+        templateUrl: 'static/views/stats.html',
+        data: {
+          requireLogin: true
+        }
+      })
+      .state('khan.admin', {
         url: '/admin',
         controller: 'AdminCtrl',
         templateUrl: 'static/views/admin.html',
@@ -70,21 +75,19 @@ angular
     $translateProvider.preferredLanguage('en');
     $translateProvider.useCookieStorage();
   })
-  .run(function ($rootScope, $state, $stateParams, DS, DSLocalForageAdapter) {
+  .run(function ($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
 
-    DS.registerAdapter('localforage', DSLocalForageAdapter, {default: true});
-
     // set default password to 1234
-    localforage.getItem('lk-pw', function (err, pw) {
+    localforage.getItem('lk-pw').then(function (pw) {
       if (!pw) {
         localforage.setItem('lk-pw', '1234');
       }
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {
-      if (toState.data && toState.data.requireLogin && !$rootScope.loggedIn && false) {
+      if (toState.data && toState.data.requireLogin && !$rootScope.loggedIn) {
         event.preventDefault();
         $state.go('login');
       } else {

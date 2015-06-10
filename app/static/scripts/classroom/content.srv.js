@@ -3,11 +3,14 @@
 angular.module('lkhan')
   .service('ContentService', function ($http, $q) {
 
+    const TOPIC_TITLE_LIMIT = 55;
     var topics = null,
+      toc = [],
       topicIndex = null,
       exercises = null,
       videos = null,
-      colors = ['blue', 'green', 'red', 'green', 'red', 'blue', 'green', 'green', 'red', 'blue', 'blue', 'green', 'red', 'green', 'blue', 'blue', 'green', 'blue', 'blue', 'green'];
+      colors = ['blue', 'green', 'red', 'green', 'red', 'blue', 'green', 'green', 'red', 'blue', 'blue', 'green', 'red',
+        'green', 'blue', 'blue', 'green', 'blue', 'blue', 'green'];
 
     this.loadContent = function () {
       var deferredTopics = $q.defer(),
@@ -28,14 +31,32 @@ angular.module('lkhan')
           topics = data.topics;
           topicIndex = _.indexBy(topics, 'slug');
 
-          // colorize tutorials add calculate total exercises
-          var cIndex = 0, colorLength = colors.length;
+          // create TOC, colorize tutorials and calculate total exercises
+          var colorIndex = 0, colorLength = colors.length;
           _.each(topics, function (topic) {
+            var currentRow = [], currentRowLength = 0, currentTopic = {
+              title: topic.title,
+              slug: topic.slug,
+              rows: []
+            };
             _.each(topic.tutorials, function (tutorial) {
-              tutorial.color = colors[cIndex % colorLength];
+              var titleLength = tutorial.title.length;
+              if ((currentRowLength + titleLength < TOPIC_TITLE_LIMIT || currentRow.length === 0) && currentRow.length < 3) {
+                currentRow.push(tutorial);
+                currentRowLength = currentRowLength + titleLength;
+              } else {
+                currentTopic.rows.push(currentRow);
+                currentRow = [];
+                currentRow.push(tutorial);
+                currentRowLength = titleLength;
+              }
+              tutorial.color = colors[colorIndex % colorLength];
               tutorial.total = _.filter(tutorial.tutorialContents, {type: 'e'}).length;
-              cIndex = cIndex + 1;
+              colorIndex = colorIndex + 1;
             });
+
+            currentTopic.rows.push(currentRow);
+            toc.push(currentTopic);
           });
 
           deferredTopics.resolve(data);
@@ -65,7 +86,6 @@ angular.module('lkhan')
           deferredVideos.reject(response);
         });
 
-
       return $q.all({
         topics: deferredTopics.promise,
         exercises: deferredExercises.promise,
@@ -75,8 +95,8 @@ angular.module('lkhan')
       });
     };
 
-    this.getTopicStructure = function () {
-      return topics;
+    this.getTOC = function () {
+      return toc;
     };
 
     this.getTopic = function (topicSlug) {
@@ -91,6 +111,10 @@ angular.module('lkhan')
       return this.getTutorial(topicSlug, tutorialSlug).tutorialContents;
     };
 
+    this.getTutorialContent = function (topicSlug, tutorialSlug, tutorialContentId, type) {
+      return _.filter(this.getTutorialContents(topicSlug, tutorialSlug), {'type': type, 'id': tutorialContentId})[0];
+    };
+
     this.getVideo = function (videoId) {
       return videos[videoId];
     };
@@ -98,5 +122,4 @@ angular.module('lkhan')
     this.getExercises = function (tutorialContentId) {
       return exercises[tutorialContentId];
     };
-
   });

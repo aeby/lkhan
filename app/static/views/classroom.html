@@ -1,7 +1,7 @@
 <nav class="cr-nav">
   <a class="pull-left logo" ui-sref="khan.classroom"><span class="icon-leaf"></span></a>
-  <span class="pull-left">{{currentStudent.name}}</span>
-  <a class="pull-right admin" ui-sref="admin"><span class="icon-settings"></span></a>
+  <a class="pull-left" ng-show="currentStudent" ui-sref="khan.stats">{{currentStudent.name}} <span class="icon-stats-bars"></span></a>
+  <a class="pull-right admin" ui-sref="khan.admin"><span class="icon-settings"></span></a>
   <a class="pull-right fullscreen" ng-click="toggleFullScreen()"><span class="icon-enlarge"></span></a>
 </nav>
 
@@ -19,7 +19,7 @@
           <div class="circle" ng-class="getTutorialClass(tutorial)">
             <div class="logo"></div>
           </div>
-          <div ng-show="tutorial.total && (topicProgress[tutorial.slug] < tutorial.total || !topicProgress[tutorial.slug])" class="text-muted">{{ topicProgress[tutorial.slug] || '0' }}/{{ tutorial.total }}</div>
+          <div ng-show="getTutorialProgress(tutorial.slug) < tutorial.total" class="text-muted">{{ getTutorialProgress(tutorial.slug) }}/{{ tutorial.total }}</div>
           {{tutorial.title}}
         </a>
       </li>

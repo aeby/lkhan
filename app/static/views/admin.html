@@ -2,6 +2,7 @@
   <a class="pull-left logo" ui-sref="khan.classroom"><span class="icon-leaf"></span></a>
 </nav>
 
+
 <div class="cnt-md">
   <h3>{{ 'ADMIN_STUDENTS' | translate}}</h3>
 
@@ -39,11 +40,12 @@
     </li>
   </ul>
 
-  <h3>{{ 'ADMIN_PASSWORD' | translate }}</h3>
+  <h3>{{ 'ADMIN_PASSWORD_CHANGE' | translate }}</h3>
 
   <form ng-submit="updatePassword()">
     <div class="form-group">
-      <input class="form-control" type="password" ng-model="pwForm.pw" size="30" autocomplete="off" minlength="4" required="required">
+      <input class="form-control" type="password" ng-model="pwForm.pw" size="30" autocomplete="off" minlength="4"
+             required="required">
     </div>
 
     <div ng-show="pwError" class="alert alert-danger" role="alert">

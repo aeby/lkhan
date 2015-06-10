@@ -164,7 +164,7 @@ ol {
   list-style: none;
 }
 // [converter] extracted as `@mixin list-unstyled` for libsass compatibility
-.list-unstyled {
+.list-unstyled, .perseus-widget-radio {
   @include list-unstyled;
 }
 

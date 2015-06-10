@@ -14,6 +14,7 @@
   "ADMIN_LOGIN": "Login",
   "ADMIN_LOGIN_FAIL": "Your password is incorrect.",
   "ADMIN_PASSWORD": "Password",
+  "ADMIN_PASSWORD_CHANGE": "Change password",
   "ADMIN_STUDENTS": "Students",
   "ADMIN_NAME": "Name",
   "ADMIN_USER_EXISTS": "There's already a student with that name",
@@ -22,5 +23,10 @@
   "ADMIN_LANGUAGE": "Language",
   "ADMIN_SAVE": "Save",
   "ADMIN_PASSWORD_UPDATE_OK": "Password updated.",
-  "ADMIN_PASSWORD_UPDATE_FAIL": "Password too short"
+  "ADMIN_PASSWORD_UPDATE_FAIL": "Password too short",
+  "ACTION_HINT": "Hint",
+  "ACTION_CORRECT": "Correct answer",
+  "ACTION_WRONG": "Wrong answer",
+  "ACTION_EXERCISE_DONE": "Exercise done",
+  "ACTION_EXERCISE_REDONE": "Exercise redone"
 }

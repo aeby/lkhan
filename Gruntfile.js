@@ -30,6 +30,12 @@ module.exports = function (grunt) {
     'MathJax/jax/output/HTML-CSS/fonts/TeX/fontdata.js',
     'MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Main.js',
     'MathJax/jax/output/HTML-CSS/fonts/TeX/AMS/Regular/Latin1Supplement.js',
+    'MathJax/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff',
+    'MathJax/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff',
+    'MathJax/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff',
+    'MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf',
+    'MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf',
+    'MathJax/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf'
   ];
 
   // Define the configuration for all the tasks
@@ -219,6 +225,7 @@ module.exports = function (grunt) {
           '!<%= yeoman.dist %>/static/scripts/MathJax/{,*/}*.js',
           '<%= yeoman.dist %>/static/styles/{,*/}*.css',
           '<%= yeoman.dist %>/static/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '!<%= yeoman.dist %>/static/images/avatars/*.png',
           '<%= yeoman.dist %>/static/styles/fonts/*'
         ]
       }

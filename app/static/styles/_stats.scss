@@ -1,0 +1,36 @@
+.stats-activity {
+  padding: 10px;
+  border-bottom: 1px solid $gray-lighter;
+
+  h4 {
+    margin-top: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.action-c {
+    background-color: $exercise-correct-bg;
+    color: $exercise-correct-text;
+  }
+
+  &.action-w {
+    background-color: $exercise-wrong-bg;
+    color: $exercise-wrong-text;
+  }
+
+  &.action-h, &.action-rd {
+    background-color: #EEE;
+  }
+
+  &.action-d {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 12px, rgba(255, 0, 0, 0.025) 12px, rgba(255, 0, 0, 0.025) 24px);
+    background-color: #FEF4AE;
+    color: #B88600;
+  }
+}

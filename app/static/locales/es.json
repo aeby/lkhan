@@ -14,6 +14,7 @@
   "ADMIN_LOGIN": "Iniciar sesión",
   "ADMIN_LOGIN_FAIL": "Tu contraseña es incorrecta",
   "ADMIN_PASSWORD": "Contraseña",
+  "ADMIN_PASSWORD_CHANGE": "Cambiar contraseña",
   "ADMIN_STUDENTS": "Estudiantes",
   "ADMIN_NAME": "Nombre",
   "ADMIN_USER_EXISTS": "Ya hay un estudiante con este nombre",
@@ -22,5 +23,10 @@
   "ADMIN_LANGUAGE": "Idioma",
   "ADMIN_SAVE": "Guardar",
   "ADMIN_PASSWORD_UPDATE_OK": "Contraseña actualizado",
-  "ADMIN_PASSWORD_UPDATE_FAIL": "La contraseña es muy corta"
+  "ADMIN_PASSWORD_UPDATE_FAIL": "La contraseña es muy corta",
+  "ACTION_HINT": "Pista",
+  "ACTION_CORRECT": "Respuesta correcta",
+  "ACTION_WRONG": "Respuesta incorrecta",
+  "ACTION_EXERCISE_DONE": "Ejercicio finalizado",
+  "ACTION_EXERCISE_REDONE": "Rehecho ejercicio"
 }

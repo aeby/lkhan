@@ -8,10 +8,9 @@
  * Controller of the clientApp
  */
 angular.module('lkhan')
-  .controller('AdminCtrl', function ($window, $scope, $rootScope, $translate, DS, Student) {
+  .controller('AdminCtrl', function ($window, $scope, $rootScope, $translate, Student, Activity) {
 
-    Student.bindAll({active: true}, $rootScope, 'students');
-    DS.findAll('student');
+    Student.bindAll($scope, 'students', {active: true});
 
     function defaultUser() {
       return {name: '', active: true};
@@ -19,8 +18,33 @@ angular.module('lkhan')
 
     $scope.newStudent = defaultUser();
 
+    $rootScope.$watch('currentStudent', function (student) {
+      if (student) {
+        Activity.findAll({
+          studentId: student.id
+        }).then(function (activities) {
+          $scope.activities = activities;
+        });
+      }
+    });
+
+    $scope.actionText = function (action) {
+      if (action === Activity.ACTION_EXERCISE_DONE) {
+        return 'Exercise done';
+      }
+      if (action === Activity.ACTION_CORRECT) {
+        return 'Correct answer';
+      }
+      if (action === Activity.ACTION_WRONG) {
+        return 'Wrong answer';
+      }
+      if (action === Activity.ACTION_HINT) {
+        return 'Hint';
+      }
+    };
+
     $scope.addStudent = function () {
-      DS.create('student', $scope.newStudent)
+      Student.createValidated($scope.newStudent)
         .then(function () {
           $scope.newStudent = defaultUser();
           $scope.userError = null;
@@ -29,19 +53,13 @@ angular.module('lkhan')
         });
     };
 
-    $scope.switchStudent = function (id) {
-      $rootScope.currentStudent = Student.get(id);
+    $scope.switchStudent = function (studentId) {
+      Student.load(studentId);
     };
 
-    $scope.removeStudent = function (id) {
+    $scope.removeStudent = function (studentId) {
       if ($window.confirm($translate.instant('ADMIN_USER_DELETE'))) {
-        var st = Student.get(id);
-        st.active = false;
-        st.name = st.name + '_deactivated_' + Date.now();
-        Student.save(id).then(function () {
-        }, function (err) {
-          console.error(err);
-        });
+        Student.remove(studentId);
       }
     };
 
@@ -69,5 +87,4 @@ angular.module('lkhan')
         $scope.pwSuccess = null;
       }
     };
-
   });
