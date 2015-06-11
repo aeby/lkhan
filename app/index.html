@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" manifest="khan.appcache">
 <head>
   <base href="/">
   <meta charset="utf-8">
@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="static/styles/main.css">
   <!-- endbuild -->
 
-  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="shortcut icon" href="static/images/favicon.ico">
   <link rel="apple-touch-icon-precomposed" sizes="57x57" href="static/images/apple-touch-icon-57x57-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/images/apple-touch-icon-72x72-precomposed.png"/>
   <link rel="apple-touch-icon-precomposed" sizes="114x114"
@@ -28,76 +28,127 @@
         href="static/images/apple-touch-icon-144x144-precomposed.png"/>
 </head>
 <body ng-class="bgColor">
-  <div ui-view></div>
+<div ui-view></div>
+<div id="progresscnt"
+     style="display: none; position: absolute; top:0; left: 0; right: 0; bottom: 0;
+     background-color: rgba(0,0,0,0.85); color: #F1F1F1; text-align: center">
+  <h1>Loading <span id="loadprogress"></span></h1>
+</div>
+<script>
+  var appCache = window.applicationCache,
+    floor = Math.floor,
+    progress = document.getElementById("loadprogress"),
+    progressCnt = document.getElementById("progresscnt");
 
-  <script type="text/javascript">
-    window.MathJax = {
-      config: "TeX-AMS_HTML-full.js"
-    };
-  </script>
-  <!-- mathjax can't be concatenated as long as the base path can't be set-->
-  <script src="static/scripts/MathJax/MathJax.js"></script>
+  function handleCacheEvent(e) {
+    progress.innerHTML = floor(100.0 / e.total * e.loaded) + '%';
+  }
 
-  <!-- build:js({.,app}) static/scripts/vendor.js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/underscore/underscore.js"></script>
+  function handleCached() {
+    progressCnt.style.display = 'none';
+  }
 
-  <script src="static/scripts/pe/react-with-addons-0.13.3.js"></script>
-  <script src="static/scripts/perseus/lib/katex/katex.js"></script>
-  <script src="static/scripts/perseus/lib/mathquill/mathquill-basic.js"></script>
-  <script src="static/scripts/perseus/lib/kas.js"></script>
-  <script src="static/scripts/perseus/ke/local-only/jed.js"></script>
-  <script src="static/scripts/perseus/ke/local-only/i18n.js"></script>
-  <script src="static/scripts/perseus/ke/local-only/jquery.qtip.js"></script>
-  <script src="static/scripts/pe/exercises-stub.js"></script>
+  function handleDownloading() {
+    progressCnt.style.display = 'block';
+  }
 
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-aria/angular-aria.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angular-messages/angular-messages.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="bower_components/angular-translate/angular-translate.js"></script>
-  <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
-  <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-  <script src="bower_components/localforage/dist/localforage.js"></script>
-  <script src="bower_components/angular-lfmo/dist/angular-lfmo.js"></script>
-  <script src="static/scripts/perseus/ke/local-only/require.js"></script>
-  <!-- endbuild -->
+  window.addEventListener('load', function () {
+    appCache.addEventListener('updateready', function () {
+      if (appCache.status == appCache.UPDATEREADY) {
+        if (confirm('A new version of this site is available. Load it?')) {
+          window.location.reload();
+        } else {
+          handleCached();
+        }
+      }
+    }, false);
+  }, false);
 
-  <!-- build:js({.tmp,app}) static/scripts/scripts.js -->
-  <script src="static/scripts/app.js"></script>
+  appCache.addEventListener('downloading', handleDownloading, false);
+  appCache.addEventListener('cached', handleCached, false);
+  appCache.addEventListener('progress', handleCacheEvent, false);
+</script>
 
-  <script src="static/scripts/classroom/classroom.ctrl.js"></script>
-  <script src="static/scripts/classroom/content.srv.js"></script>
+<script type="text/javascript">
+  window.MathJax = {
+    config: "TeX-AMS_HTML-full.js"
+  };
+</script>
+<!-- mathjax can't be concatenated as long as the base path can't be set-->
+<script src="static/scripts/MathJax/MathJax.js"></script>
 
-  <script src="static/scripts/tutorial/tutorial.ctrl.js"></script>
-  <script src="static/scripts/tutorial/exercise.ctrl.js"></script>
-  <script src="static/scripts/tutorial/video.ctrl.js"></script>
-  <script src="static/scripts/tutorial/perseus.srv.js"></script>
+<!-- build:js({.,app}) static/scripts/vendor.js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
 
-  <script src="static/scripts/admin/admin.ctrl.js"></script>
-  <script src="static/scripts/admin/login.ctrl.js"></script>
+<script src="static/scripts/pe/react-with-addons-0.13.3.js"></script>
+<script src="static/scripts/perseus/lib/katex/katex.js"></script>
+<script src="static/scripts/perseus/lib/mathquill/mathquill-basic.js"></script>
+<script src="static/scripts/perseus/lib/kas.js"></script>
+<script src="static/scripts/perseus/ke/local-only/jed.js"></script>
+<script src="static/scripts/perseus/ke/local-only/i18n.js"></script>
+<script src="static/scripts/perseus/ke/local-only/jquery.qtip.js"></script>
+<script src="static/scripts/pe/exercises-stub.js"></script>
 
-  <script src="static/scripts/student/student.mdl.js"></script>
-  <script src="static/scripts/student/activity.mdl.js"></script>
-  <script src="static/scripts/student/stats.ctrl.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+<script src="bower_components/localforage/dist/localforage.js"></script>
+<script src="bower_components/angular-lfmo/dist/angular-lfmo.js"></script>
+<script src="static/scripts/perseus/ke/local-only/require.js"></script>
+<!-- endbuild -->
 
-  <script src="static/scripts/directives/perseus.js"></script>
-  <script src="static/scripts/directives/progress-dot.js"></script>
-  <script src="static/scripts/directives/menu.js"></script>
-  <script src="static/scripts/directives/media.js"></script>
-  <!-- endbuild -->
+<!-- build:js({.tmp,app}) static/scripts/scripts.js -->
+<script src="static/scripts/app.js"></script>
 
-  <script>
-    var KhanUtil = {debugLog: function () {}, localeToFixed: function(num, precision) {return num.toFixed(precision);}};
-    var Khan = {Util: KhanUtil, error: function () {}, query: {debug: ""}, imageBase: "/static/images", scratchpad: {disable: function () {}, enable: function () {}}};
-    React.initializeTouchEvents(true);
-  </script>
+<script src="static/scripts/classroom/classroom.ctrl.js"></script>
+<script src="static/scripts/classroom/content.srv.js"></script>
 
-  <script src="static/scripts/pe/ng-perseus-build.js"></script>
+<script src="static/scripts/tutorial/tutorial.ctrl.js"></script>
+<script src="static/scripts/tutorial/exercise.ctrl.js"></script>
+<script src="static/scripts/tutorial/video.ctrl.js"></script>
+<script src="static/scripts/tutorial/perseus.srv.js"></script>
+
+<script src="static/scripts/admin/admin.ctrl.js"></script>
+<script src="static/scripts/admin/login.ctrl.js"></script>
+
+<script src="static/scripts/student/student.mdl.js"></script>
+<script src="static/scripts/student/activity.mdl.js"></script>
+<script src="static/scripts/student/stats.ctrl.js"></script>
+
+<script src="static/scripts/directives/perseus.js"></script>
+<script src="static/scripts/directives/progress-dot.js"></script>
+<script src="static/scripts/directives/menu.js"></script>
+<script src="static/scripts/directives/media.js"></script>
+<!-- endbuild -->
+
+<script>
+  var KhanUtil = {
+    debugLog: function () {
+    }, localeToFixed: function (num, precision) {
+      return num.toFixed(precision);
+    }
+  };
+  var Khan = {
+    Util: KhanUtil, error: function () {
+    }, query: {debug: ""}, imageBase: "/static/images", scratchpad: {
+      disable: function () {
+      }, enable: function () {
+      }
+    }
+  };
+  React.initializeTouchEvents(true);
+</script>
+
+<script src="static/scripts/pe/ng-perseus-build.js"></script>
 </body>
 </html>

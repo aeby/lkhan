@@ -48,10 +48,7 @@ angular
       .state('khan.stats', {
         url: '/stats',
         controller: 'StatsCtrl',
-        templateUrl: 'static/views/stats.html',
-        data: {
-          requireLogin: true
-        }
+        templateUrl: 'static/views/stats.html'
       })
       .state('khan.admin', {
         url: '/admin',

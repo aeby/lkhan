@@ -325,10 +325,9 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
             '*.html',
             'static/views/{,*/}*.html',
-            'static/images/{,*/}*.{webp}',
+            'static/images/{,*/}*.{webp,ico}',
             'static/styles/fonts/{,*/}*.*'
           ]
         }, {
@@ -394,12 +393,19 @@ module.exports = function (grunt) {
           cache: ['{% for asset in assets %}{{asset}}\n{% endfor %}'],
           network: ['*'],
           preferOnline: false,
-          verbose: false,
-          master: ['index.html']
+          verbose: true,
+          master: ['index.html'],
+          process: function (path) {
+            if (path.indexOf('static/scripts/MathJax/') === 0) {
+              return path + '\n' + path + '?rev=2.5.1';
+            }
+            else {
+              return path;
+            }
+          }
         },
         src: '**/*.*',
-        dest: '' +
-        'lkhan.appcache'
+        dest: 'lkhan.appcache'
       }
     },
 

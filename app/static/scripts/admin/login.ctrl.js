@@ -20,7 +20,7 @@ angular.module('lkhan')
         if ($scope.form.pw === pw) {
           $scope.formError = false;
           $rootScope.loggedIn = true;
-          $state.go('admin');
+          $state.go('khan.admin');
         } else {
           $scope.formError = true;
         }
