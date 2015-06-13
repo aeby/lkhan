@@ -28,28 +28,33 @@
         href="static/images/apple-touch-icon-144x144-precomposed.png"/>
 </head>
 <body ng-class="bgColor">
+
 <div ui-view></div>
-<div id="progresscnt"
-     style="display: none; position: absolute; top:0; left: 0; right: 0; bottom: 0;
+
+<input class="hidden" id="progresstotal" type="hidden" value="{{ asset_count }}">
+
+<div id="progresscnt" style="display: none; position: absolute; top:0; left: 0; right: 0; bottom: 0;
      background-color: rgba(0,0,0,0.85); color: #F1F1F1; text-align: center">
   <h1>Loading <span id="loadprogress"></span></h1>
 </div>
+
 <script>
   var appCache = window.applicationCache,
+    loaded = 0,
     floor = Math.floor,
     progress = document.getElementById("loadprogress"),
-    progressCnt = document.getElementById("progresscnt");
+    progressTotal = document.getElementById("progresstotal"),
+    progressCnt = document.getElementById("progresscnt"),
+    total = parseInt(progressTotal.value, 10) || 0;
 
-  function handleCacheEvent(e) {
-    progress.innerHTML = floor(100.0 / e.total * e.loaded) + '%';
-  }
-
-  function handleCached() {
-    progressCnt.style.display = 'none';
-  }
-
-  function handleDownloading() {
-    progressCnt.style.display = 'block';
+  function handleProgress() {
+    if (total <= loaded) {
+      progressCnt.style.display = 'none';
+    } else {
+      progressCnt.style.display = 'block';
+      loaded = loaded + 1;
+      progress.innerHTML = floor(100.0 / total * loaded) + '%';
+    }
   }
 
   window.addEventListener('load', function () {
@@ -58,15 +63,13 @@
         if (confirm('A new version of this site is available. Load it?')) {
           window.location.reload();
         } else {
-          handleCached();
+          progressCnt.style.display = 'none';
         }
       }
     }, false);
   }, false);
 
-  appCache.addEventListener('downloading', handleDownloading, false);
-  appCache.addEventListener('cached', handleCached, false);
-  appCache.addEventListener('progress', handleCacheEvent, false);
+  appCache.addEventListener('progress', handleProgress, false);
 </script>
 
 <script type="text/javascript">
