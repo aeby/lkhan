@@ -5,7 +5,7 @@ angular.module('lkhan')
 
     return {
       restrict: 'E',
-      templateUrl: '/static/views/directives/menu.html',
+      templateUrl: 'static/views/directives/menu.html',
       scope: {
         menuItems: '='
       },

@@ -5,7 +5,7 @@ angular.module('lkhan')
 
     return {
       restrict: 'E',
-      templateUrl: '/static/views/directives/perseus.html',
+      templateUrl: 'static/views/directives/perseus.html',
       scope: {
         question: '='
       },

@@ -12,6 +12,8 @@ angular
     'angular-lfmo'
   ])
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
+    var base = document.querySelector('base');
+    var baseUrl = base && base.href || '/';
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
 
@@ -65,7 +67,7 @@ angular
       });
 
     $translateProvider.useStaticFilesLoader({
-      prefix: '/static/locales/',
+      prefix: baseUrl + 'static/locales/',
       suffix: '.json'
     });
     $translateProvider.useSanitizeValueStrategy('escaped');

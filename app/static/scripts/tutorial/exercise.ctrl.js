@@ -15,8 +15,8 @@ angular.module('lkhan')
     }
 
     const EXERCISE_SUCCESS = 5,
-      AUDIO_CORRECT = new Audio('/static/sound/question-correct.ogg'),
-      AUDIO_DONE = new Audio('/static/sound/end-of-task.ogg'),
+      AUDIO_CORRECT = new Audio('static/sound/question-correct.ogg'),
+      AUDIO_DONE = new Audio('static/sound/end-of-task.ogg'),
       AVATAR_IMAGES = ['orange-juice-squid', 'marcimus', 'mr-pink', 'purple-pi', 'spunky-sam'];
     var exercises = ContentService.getExercises($stateParams.tutorialContentId),
       exercisesDone = [],
