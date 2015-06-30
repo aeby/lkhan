@@ -1,10 +1,7 @@
 'use strict';
 angular
   .module('lkhan', [
-    'ngAnimate',
-    'ngAria',
     'ngCookies',
-    'ngMessages',
     'ngSanitize',
     'ngTouch',
     'pascalprecht.translate',
@@ -14,12 +11,11 @@ angular
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider, $translateProvider) {
     var base = document.querySelector('base');
     var baseUrl = base && base.href || '/';
-    $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
       .state('khan', {
-        template: '<ui-view/>',
+        template: '<div ui-view></div>',
         abstract: true,
         resolve: {
           content: function ($rootScope, ContentService) {
@@ -83,6 +79,11 @@ angular
       if (!pw) {
         localforage.setItem('lk-pw', '1234');
       }
+    });
+
+    // perseus graphie loads jsonp with default cache false & this is really bad for our cache manifest.
+    $.ajaxSetup({
+      cache: true
     });
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {

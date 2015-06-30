@@ -2,8 +2,7 @@
   <a ui-sref="khan.classroom"><span class="back icon-arrow-back"></span> {{tutorial.title}}</a>
 </nav>
 
-
-<div class="list-unstyled tc-cnt">
+<div class="tc-cnt">
   <div class="tc-card" ng-repeat="tutorialContent in tutorialContents track by tutorialContent.slug">
     <span class="tc-number" ng-class="colorClass">
       {{ $index + 1 }}
